@@ -26,12 +26,12 @@ public class JobSequencingProblem {
 
         System.out.println("Using Greedy Algorithm:");
         System.out.print(
-                "Final job sequence following maximum profit: ");
+                "Final job sequence following maximum marks: ");
         printJobs(GreedyMethod.sequenceJobs(arraylist, 3));
 
         System.out.println("\nUsing Branch And Bound Algorithm:");
         System.out.print(
-                "Final job sequence following maximum profit: ");
+                "Final job sequence following maximum marks: ");
         // printJobs(BranchAndBound.sequenceJobs());
     }
 
