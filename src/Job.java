@@ -2,15 +2,15 @@ public abstract class Job {
 
     String id;
     private int deadline;
-    private int profit;
+    private int mark;
 
     public Job() {
     }
 
-    public Job(String id, int deadline, int profit) {
+    public Job(String id, int deadline, int mark) {
         this.id = id;
         this.deadline = deadline;
-        this.profit = profit;
+        this.mark = mark;
     }
 
     public String getId() {
@@ -29,12 +29,12 @@ public abstract class Job {
         this.deadline = deadline;
     }
 
-    public int getProfit() {
-        return profit;
+    public int getMark() {
+        return mark;
     }
 
-    public void setProfit(int profit) {
-        this.profit = profit;
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 
 }
