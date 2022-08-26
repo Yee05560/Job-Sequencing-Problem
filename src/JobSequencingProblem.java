@@ -1,9 +1,9 @@
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
 public class JobSequencingProblem {
 
@@ -20,6 +20,7 @@ public class JobSequencingProblem {
                 arraylist.add(new Assignment(words[0], Integer.parseInt(words[1]), Integer.parseInt(words[2])));
             }
         } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
