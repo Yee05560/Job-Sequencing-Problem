@@ -17,8 +17,8 @@ import java.util.Arrays;
 public class GreedyMethod {
 
     public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) {
-        // Sort the jobs according to decreasing order of profit
-        list.sort((a, b) -> b.getProfit() - a.getProfit());
+        // Sort the jobs according to decreasing order of marks
+        list.sort((a, b) -> b.getMark() - a.getMark());
 
         // To keep track of free time slots
         boolean[] result = new boolean[numOfJobsToSequence];
