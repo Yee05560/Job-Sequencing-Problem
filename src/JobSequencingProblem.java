@@ -15,9 +15,9 @@ public class JobSequencingProblem {
             Scanner in = new Scanner(new File("jobs.txt"));
             String line;
             while (in.hasNext()) {
-                line = in.nextLine();
-                String[] words = line.split(",");
-                arraylist.add(new Assignment(words[0], Integer.parseInt(words[1]), Integer.parseInt(words[2])));
+                    line = in.nextLine();
+                    String[] words = line.split(",");
+                    arraylist.add(new Assignment(words[0], Integer.parseInt(words[1]), Integer.parseInt(words[2])));           
             }
         } catch (FileNotFoundException e) {
             System.out.println("ERROR : Job.txt file is missing.");
@@ -25,13 +25,25 @@ public class JobSequencingProblem {
         } catch (NumberFormatException e) {
 			System.out.println("ERROR : Job.txt file data have incorrect format");
 			e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-			System.out.println("ERROR : Argument is invalid");
-			e.printStackTrace();
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } 
+        // catch (IllegalArgumentException e) {
+		// 	System.out.println("ERROR : Argument is invalid");
+		// 	e.printStackTrace();
+        // } 
+        catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("ERROR :Array has been accessed with an illegal index.");
 			e.printStackTrace();
-        } 
+        }
+
+        System.out.println("Using Greedy Algorithm:");
+        System.out.print(
+                "Final job sequence following maximum profit: ");
+        printJobs(GreedyMethod.sequenceJobs(arraylist, 3));
+
+        System.out.println("\nUsing Branch And Bound Algorithm:");
+        System.out.print(
+                "Final job sequence following maximum profit: ");
+        // printJobs(BranchAndBound.sequenceJobs());
 
 
         //  catch (NullPointerException e) {
@@ -49,9 +61,10 @@ public class JobSequencingProblem {
     public static void printJobs(List<String> list) {
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
-            if (list.contains(null)) {
-                throw new NullPointerException("ERROR :Job.txt file data is missing.");
-            } else {
+            if (iterator.next()==null){
+                System.out.print("\n");
+                throw new IllegalArgumentException("ERROR : Argument is invalid");
+            }else{
                 System.out.print(iterator.next() + " ");
             }
         }
