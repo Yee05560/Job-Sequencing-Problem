@@ -1,8 +1,5 @@
 import java.util.List;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Arrays;
-import java.util.InputMismatchException;
 
 /**
  * Algorithm:
@@ -19,7 +16,7 @@ import java.util.InputMismatchException;
 
 public class GreedyMethod {
 
-    public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) throws IOException, ParseException {
+    public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) {
         // Sort the jobs according to decreasing order of marks
         list.sort((a, b) -> b.getMark() - a.getMark());
 
