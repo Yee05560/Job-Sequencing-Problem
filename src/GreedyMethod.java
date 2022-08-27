@@ -3,8 +3,8 @@ import java.util.Arrays;
 
 /**
  * Algorithm:
- * 1) Sort all jobs in decreasing order of profit.
- * 2) Iterate on jobs in decreasing order of profit.
+ * 1) Sort all jobs in decreasing order of marks.
+ * 2) Iterate on jobs in decreasing order of makrs.
  *    For each job , do the following :
  * a) Find a time slot i, such that slot is empty and i < deadline and i is greatest.
  *    Put the job in this slot and mark this slot filled.
@@ -29,9 +29,6 @@ public class GreedyMethod {
         // Iterating through all given jobs
         try {
             for (Job value : list) {
-                if (list.contains(null)) {
-                    throw new NullPointerException("ERROR :Job.txt file data is missing.");
-                } else {
                     // Find a free slot for this job starting from the last possible slot
                     for (int j = Math.min(numOfJobsToSequence - 1, value.getDeadline() - 1); j >= 0; j--) {
                         // Free slot found
@@ -43,7 +40,7 @@ public class GreedyMethod {
                     }
                 }
                 
-            }
+            
         } catch (NumberFormatException e) {
 			System.out.println("ERROR : Job.txt file data have incorrect format");
 			e.printStackTrace();
