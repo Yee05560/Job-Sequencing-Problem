@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,9 +21,16 @@ public class JobSequencingProblem {
                 arraylist.add(new Assignment(words[0], Integer.parseInt(words[1]), Integer.parseInt(words[2])));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("ERROR : Job.txt file is missing.");
             e.printStackTrace();
-        }
+        }catch (IOException e) {
+			System.out.println("ERROR : Job.txt data file cant be read.");
+            e.printStackTrace();
+        } catch (Exception e) {
+			System.out.println("ERROR");
+			e.printStackTrace();
+		} 
+
 
         System.out.println("Using Greedy Algorithm:");
         System.out.print(
