@@ -19,7 +19,7 @@ import java.util.InputMismatchException;
 
 public class GreedyMethod {
 
-    public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) throws InputMismatchException, IOException, IllegalArgumentException, ParseException {
+    public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) throws IOException, ParseException {
         // Sort the jobs according to decreasing order of marks
         list.sort((a, b) -> b.getMark() - a.getMark());
 
@@ -32,8 +32,8 @@ public class GreedyMethod {
         // Iterating through all given jobs
         try {
             for (Job value : list) {
-                if (value == null) {
-                    System.out.println("String is null");
+                if (list.contains(null)) {
+                    throw new NullPointerException("ERROR :Job.txt file data is missing.");
                 } else {
                     // Find a free slot for this job starting from the last possible slot
                     for (int j = Math.min(numOfJobsToSequence - 1, value.getDeadline() - 1); j >= 0; j--) {
@@ -47,10 +47,21 @@ public class GreedyMethod {
                 }
                 
             }
-        }catch (Exception e) {
-            // Print message when any exception occurs
-            System.out.println("Something went wrong.");
-        }
+        } catch (NumberFormatException e) {
+			System.out.println("ERROR : Job.txt file data have incorrect format");
+			e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+			System.out.println("ERROR : Argument is invalid");
+			e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("ERROR :Array has been accessed with an illegal index.");
+			e.printStackTrace();
+        } 
+
+        // }catch (Exception e) {
+        //     // Print message when any exception occurs
+        //     System.out.println("Something went wrong.");
+        // }
         return Arrays.asList(job);
     }
 
