@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class JobSequencingProblem {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         List<Job> arraylist = new ArrayList<>();
 
@@ -23,9 +23,6 @@ public class JobSequencingProblem {
         } catch (FileNotFoundException e) {
             System.out.println("ERROR : Job.txt file is missing.");
             e.printStackTrace();
-        }catch (IOException e) {
-			System.out.println("ERROR : Job.txt data file cant be read.");
-            e.printStackTrace();
         } catch (Exception e) {
 			System.out.println("ERROR");
 			e.printStackTrace();
@@ -35,7 +32,12 @@ public class JobSequencingProblem {
         System.out.println("Using Greedy Algorithm:");
         System.out.print(
                 "Final job sequence following maximum marks: ");
-        printJobs(GreedyMethod.sequenceJobs(arraylist, 3));
+        try {
+            printJobs(GreedyMethod.sequenceJobs(arraylist, 3));
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+        // printJobs(GreedyMethod.sequenceJobs(arraylist, 3));
 
         System.out.println("\nUsing Branch And Bound Algorithm:");
         System.out.print(
@@ -46,7 +48,11 @@ public class JobSequencingProblem {
     public static void printJobs(List<String> list) {
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
-            System.out.print(iterator.next() + " ");
+            if (list == null) {
+                System.out.println("String is null");
+            } else {
+                System.out.print(iterator.next() + " ");
+            }
         }
         System.out.println();
     }
