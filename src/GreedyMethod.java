@@ -1,4 +1,5 @@
 import java.util.List;
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Arrays;
 
 public class GreedyMethod {
 
-    public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) {
+    public static List<String> sequenceJobs(List<Job> list, int numOfJobsToSequence) throws IOException {
         // Sort the jobs according to decreasing order of marks
         list.sort((a, b) -> b.getMark() - a.getMark());
 
@@ -28,17 +29,21 @@ public class GreedyMethod {
 
         // Iterating through all given jobs
         for (Job value : list) {
-            // Find a free slot for this job starting from the last possible slot
-            for (int j = Math.min(numOfJobsToSequence - 1, value.getDeadline() - 1); j >= 0; j--) {
-                // Free slot found
-                if (!result[j]) { // If the slot is currently empty
-                    result[j] = true; // Set the slot to be filled
-                    job[j] = value.id; // Store the job into the resulting sequence
-                    break; // Move on to the next job in the list
+            if (value == null) {
+                System.out.println("String is null");
+            } else {
+                // Find a free slot for this job starting from the last possible slot
+                for (int j = Math.min(numOfJobsToSequence - 1, value.getDeadline() - 1); j >= 0; j--) {
+                    // Free slot found
+                    if (!result[j]) { // If the slot is currently empty
+                        result[j] = true; // Set the slot to be filled
+                        job[j] = value.id; // Store the job into the resulting sequence
+                        break; // Move on to the next job in the list
+                    }
                 }
             }
+            
         }
-
         return Arrays.asList(job);
     }
 
